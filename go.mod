@@ -2,6 +2,8 @@ module github.com/sharon-xa/gograde
 
 go 1.26.2
 
+require github.com/spf13/cobra-cli v1.3.0
+
 require (
 	github.com/fsnotify/fsnotify v1.9.0 // indirect
 	github.com/go-viper/mapstructure/v2 v2.4.0 // indirect
