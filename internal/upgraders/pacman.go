@@ -1,17 +1,41 @@
 package upgraders
 
-import "context"
+import (
+	"context"
+	"os/exec"
 
-type Pacman struct{}
+	"github.com/sharon-xa/gograde/internal/utils"
+)
+
+type Pacman struct {
+	privileged bool
+}
+
+func NewPacman() *Pacman {
+	return &Pacman{privileged: true}
+}
 
 func (p *Pacman) Name() string {
-	return ""
+	return "pacman"
+}
+
+func (p *Pacman) Privileged() bool {
+	return p.privileged
 }
 
 func (p *Pacman) Available() bool {
-	return false
+	_, err := exec.LookPath(p.Name())
+	if err != nil {
+		return false
+	} else {
+		return true
+	}
 }
 
 func (p *Pacman) Run(ctx context.Context) error {
+	err := utils.RunCmd(ctx, p.Name(), "-Syu", "--noconfirm")
+	if err != nil {
+		return err
+	}
 	return nil
 }
