@@ -1,3 +1,5 @@
+// Package utils provides small cross-platform helpers for command execution,
+// OS checks, and user/privilege operations used by CLI workflows.
 package utils
 
 import (
