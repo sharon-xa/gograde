@@ -44,6 +44,12 @@ to quickly create a Cobra application.`,
 			upgraders.NewApt(),
 			upgraders.NewPacman(),
 			upgraders.NewYay(),
+			upgraders.NewBrew(),
+			upgraders.NewDnf(),
+			upgraders.NewFlatpak(),
+			upgraders.NewNpm(),
+			upgraders.NewParu(),
+			upgraders.NewWinget(),
 		})
 	},
 }
