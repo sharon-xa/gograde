@@ -1,3 +1,5 @@
+// Package upgraders is where we implmenet the package manager upgrader,
+// which will implement the interface below
 package upgraders
 
 import "context"
