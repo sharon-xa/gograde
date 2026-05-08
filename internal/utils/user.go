@@ -8,6 +8,8 @@ import (
 	"syscall"
 )
 
+// TODO: this package needs to be compaible with windows and macos too, no just linux.
+
 func GetRealUser() (*user.User, error) {
 	sudoUser := os.Getenv("SUDO_USER")
 	if sudoUser == "" {
@@ -27,9 +29,14 @@ func DropPrivileges(u *user.User) error {
 	}
 
 	// GID must be dropped before UID — once you drop UID you can't change GID
+	// BUG: undefined: syscall.Setgid. compiler
+	// only happens on windows.
 	if err := syscall.Setgid(gid); err != nil {
 		return fmt.Errorf("setgid: %w", err)
 	}
+
+	// BUG: undefined: syscall.Setuid. compiler
+	// only happens on windows.
 	if err := syscall.Setuid(uid); err != nil {
 		return fmt.Errorf("setuid: %w", err)
 	}
