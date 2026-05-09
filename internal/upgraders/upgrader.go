@@ -28,12 +28,15 @@ func GetUpgradersBasedOnOS() []Upgrader {
 
 	return []Upgrader{
 		NewApt(),
-		NewBrew(),
 		NewDnf(),
 		NewFlatpak(),
 		NewPacman(),
 		NewParu(),
 		NewYay(),
+		NewSnap(),
+		NewZypper(),
+
+		NewBrew(),
 		NewPort(),
 
 		NewNpm(),
